@@ -46,3 +46,19 @@ We use AppVeyor to test `src-cli` on Windows.
 Configure the AppVeyor builds by editing the `appveyor.yml` file and logging in to AppVeyor and changing the settings there.
 
 Login with your GitHub account, switch to the `sourcegraph` account and change the settings here: https://ci.appveyor.com/project/sourcegraph/src-cli/settings/environment
+
+## Dependent Docker images
+
+`src campaign apply` and `src campaign preview` use a Docker image published as `sourcegraph/src-campaign-volume-workspace` for utility purposes when the volume workspace is selected, which is the default on macOS. This Docker image is updated by the GitHub Action workflow described in [`docker.yml`](.github/workflows/docker.yml).
+
+To build and develop this locally, you can build and tag the image with:
+
+```sh
+docker build -t sourcegraph/src-campaign-volume-workspace - < docker/campaign-volume-workspace/Dockerfile
+```
+
+To remove it and then force the upstream image on Docker Hub to be used again:
+
+```sh
+docker rmi sourcegraph/src-campaign-volume-workspace
+```
