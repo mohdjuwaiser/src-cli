@@ -49,7 +49,7 @@ Login with your GitHub account, switch to the `sourcegraph` account and change t
 
 ## Dependent Docker images
 
-`src campaign apply` and `src campaign preview` use a Docker image published as `sourcegraph/src-campaign-volume-workspace` for utility purposes when the volume workspace is selected, which is the default on macOS. This Docker image is updated by the GitHub Action workflow described in [`docker.yml`](.github/workflows/docker.yml).
+`src campaign apply` and `src campaign preview` use a Docker image published as `sourcegraph/src-campaign-volume-workspace` for utility purposes when the volume workspace is selected, which is the default on macOS. This [Docker image](./docker/campaign-volume-workspace/Dockerfile) is built by [a Python script](./docker/campaign-volume-workspace/push.sh) invoked by the GitHub Action workflow described in [`docker.yml`](.github/workflows/docker.yml).
 
 To build and develop this locally, you can build and tag the image with:
 
